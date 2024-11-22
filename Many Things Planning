@@ -1,0 +1,30 @@
+Step 1: Set Up GitHub Repository (Due: 11/21)
+Create a GitHub repository (name it something like p5js-shape-project).
+Add a README.md:
+Write a short description of the project:
+Draw 10+ shapes or vertices.
+Animate their properties (position, color, size).
+Use conditional logic (e.g., shapes bounce off walls).
+Commit the file.
+Step 2: Set Up Basic Code (Due: 11/21)
+Create a file called sketch.js.
+Paste in the basic p5.js setup from editor.p5js.org.
+Commit this file.
+Step 3: Build the Program (Ongoing: 11/22 and after)
+Start Small:
+
+Draw one shape (like a circle).
+Animate one property (e.g., make it move).
+Commit.
+Add More Shapes:
+
+Add more shapes until you have 10+.
+Commit.
+Add Conditional Logic:
+
+Make shapes bounce off walls or change color when they reach a certain position.
+Commit.
+Finish Up:
+
+Test everything to make sure it works.
+Add more advanced features (if time permits).
