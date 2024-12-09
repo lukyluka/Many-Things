@@ -1,0 +1,78 @@
+let shapes = [];
+
+function setup() {
+  createCanvas(800, 600);
+  for (let i = 0; i < 10; i++) {
+    shapes.push(new Shape(random(width), random(height), random(20, 50)));
+  }
+}
+
+function draw() {
+  background(30);
+  for (let shape of shapes) {
+    shape.move();
+    shape.display();
+    shape.checkEdges();
+    shape.checkCollisions(shapes);
+  }
+}
+
+class Shape {
+  constructor(x, y, size) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.xSpeed = random(-3, 3);
+    this.ySpeed = random(-3, 3);
+    this.color = color(random(255), random(255), random(255));
+  }
+
+  move() {
+    this.x += this.xSpeed;
+    this.y += this.ySpeed;
+  }
+
+  checkEdges() {
+    if (this.x <= 0 || this.x >= width) {
+      this.xSpeed *= -1;
+    }
+    if (this.y <= 0 || this.y >= height) {
+      this.ySpeed *= -1;
+    }
+  }
+
+  checkCollisions(otherShapes) {
+    for (let other of otherShapes) {
+      if (other !== this) {
+        let d = dist(this.x, this.y, other.x, other.y);
+        if (d < (this.size + other.size) / 2) {
+          this.xSpeed *= -1;
+          this.ySpeed *= -1;
+          other.xSpeed *= -1;
+          other.ySpeed *= -1;
+          this.color = color(random(255), random(255), random(255));
+          other.color = color(random(255), random(255), random(255));
+        }
+      }
+    }
+  }
+
+  display() {
+    fill(this.color);
+    noStroke();
+    ellipse(this.x, this.y, this.size);
+  }
+
+  clicked(px, py) {
+    let d = dist(px, py, this.x, this.y);
+    if (d < this.size / 2) {
+      this.color = color(random(255), random(255), random(255));
+    }
+  }
+}
+
+function mousePressed() {
+  for (let shape of shapes) {
+    shape.clicked(mouseX, mouseY);
+  }
+}
